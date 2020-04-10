@@ -14,7 +14,7 @@ print("""\t PRESS 1 for BASIC OPERATIONS
          PRESS 5 for WEBSERVER MANAGEMENT
          PRESS 6 for FILE TRANSFER""")
 
-location=input("Where do you want to perform operations remotely/locally :")
+location=input("Where do you want to perform operations remotely/locally :")     #to check for location
 if location == "locally":
     print("ENTER YOUR CHOICE :",end="")
     ch=input()
@@ -68,10 +68,10 @@ if location == "locally":
     else :
         print("INPUT NOT SUPPORTED")
 
-elif location == "remotely":
+elif location == "remotely":                                                #if location remotely
     print("Enter the IP of remote host")
     remoteIp = input()
-    auth = input("""Do You want to do Key authentication YES/NO""")
+    auth = input("""Do You want to do Key authentication YES/NO""")         #if key authenticaton is required
     if auth == "YES":
         #genertate and send key to remoteIp
         print("Key Transfer")
