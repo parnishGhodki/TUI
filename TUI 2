@@ -1,0 +1,68 @@
+import curses
+import time
+
+def main(stdscr):
+    curses.curs_set(0)
+    stdscr.addstr(100,100,"WELCOME TO TUI")
+    stdscr.refresh()
+    time.sleep(3) 
+curses.wrapper(main)
+
+#for remote login
+
+i=0
+def login():
+	username="redhat"
+	password="linux"
+	print("enter username:", end(''))
+	reply1=input()
+	print("enter password:", end(''))
+	reply2=input()
+		
+if reply1==username and reply2==password:
+    def entry(stdscr):
+        curses.curs_set(0)
+        stdscr.addstr(100,100,"WELCOME-ACCESS GRANTED")
+        stdscr.refresh()
+        time.sleep(3)
+    curses.wrapper(entry)
+    if i==3:
+        time.sleep(10)
+else:
+    while i<3:
+        print("invalid details - TRY AGAIN")
+        i+=1
+        if i==3:
+            print("last attempt left")
+        login()
+        
+
+print("************list of commands**************")
+    
+    
+def list():
+    choice = input("""
+                A: 
+                B: 
+                C: 
+                D:
+                E:
+                F:
+                Q: 
+
+                Please enter your choice: """)
+
+if choice == "A" or choice =="a":
+        print("lol")        
+elif choice == "B" or choice =="b":
+        print("lol")        
+elif choice == "C" or choice =="c":
+        print("lol")        
+elif choice=="D" or choice=="d":
+        print("lol")
+elif choice=="Q" or choice=="q":
+        print("lol")
+else:
+        print("You must only select either A,B,C, or D.")
+        print("Please try again")
+        list()
