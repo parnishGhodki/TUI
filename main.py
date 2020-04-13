@@ -1,7 +1,7 @@
 import os
 
 
-os.system("tput setaf 1")
+os.system("tput setaf 5")
 print("\t\t\t\t\tTUI")
 os.system("tput setaf 7")
 print("\t\t\t_______________________________")
@@ -61,7 +61,20 @@ if location == "locally":
         print("networking")
     elif int(ch)==5:
         #to configure,to put files on webserver
-        print("Webserver")
+        
+        print("""1.CONGFIGURE WEBSERVER                                     2.CREATE AND SAVE WEBPAGES""")
+
+        WSCH = int(input("enter your choice: "))  
+        
+        if WSCH==1:
+            os.system("dnf install httpd")                             os.system("systemctl enable httpd")                        os.system("systemctl disable firewalld")               
+        elif WSCH==2:                                                  os.system("cd DIRECTORY_ROOT") #JUST ADD DIRECTORY ROOT BY CHECKING  FROM httpd.conf file IN DIRECTORY/etc/httpd/conf 
+            file_name = input("enter file name: ")
+            os.system("vim file_name")
+        
+        else :
+            print("invalid choice")
+             
     elif int(ch)==6:
         #to trsnsfer files through scp
         print("Files Transfer")
@@ -71,12 +84,12 @@ if location == "locally":
 elif location == "remotely":                                                #if location remotely
     print("Enter the IP of remote host")
     remoteIp = input()
-    auth = input("""Do You want to do Key authentication YES/NO""")         #if key authenticaton is required
+    auth = input("""Do You want to do Key authentication YES/NO:""")         #if key authenticaton is required
     if auth == "YES":
         #genertate and send key to remoteIp
         print("Key Transfer")
 
-     print("ENTER YOUR CHOICE :",end="")
+    print("ENTER YOUR CHOICE :",end="")
     ch=input()
 
     if int(ch)==1:
@@ -121,7 +134,25 @@ elif location == "remotely":                                                #if 
         print("networking")
     elif int(ch)==5:
         #to configure,to put files on webserver
-        print("Webserver")
+
+        print("""1.CONGFIGURE WEBSERVER
+        2.CREATE AND SAVE WEBPAGES""")
+
+        WSCH = int(input("enter your choice: "))
+
+        if WSCH==1:
+            os.system("dnf install httpd")
+            os.system("systemctl enable httpd")
+            os.system("systemctl disable firewalld")
+
+        elif WSCH==2:
+            os.system("cd DIRECTORY_ROOT") #JUST ADD DIRECTORY ROOT BY CHECKING  FROM httpd.conf file IN DIRECTORY/etc/httpd/conf
+            file_name = input("enter file name: ")
+            os.system("vim file_name")
+
+        else:
+            print("invalid option")
+            
     elif int(ch)==6:
         #to trsnsfer files through scp
         print("Files Transfer")
