@@ -1,7 +1,8 @@
 import os
 
 
-os.system("tput setaf 5")
+os.system("clear")
+os.system("tput setaf 1")
 print("\t\t\t\t\tTUI")
 os.system("tput setaf 7")
 print("\t\t\t_______________________________")
@@ -52,7 +53,41 @@ if location == "locally":
 
     elif int(ch)==2:
         #to install,delete,add repos programmes
-        print("PAckage Management")
+        print("PAckage Management\n")
+        print("""\t\tPRESS 1 FOR INSTALLING A PROGRAMME
+                 PRESS 2 FOR DELETING A PROGRAMME
+                 PRESS 3 FOR SEARCHING A PROGRAMME
+                 PRESS 4 FOR REPOSITORY MANAGEMENT""")
+        ch2=input("Enter your choice: ")
+        if int(ch2)==1 :
+            var=input("Enter the programme you want to install: ")
+            os.system("dnf install {}".format(var))
+        elif int(ch2)==2 :
+            var=input("Enter the name of programme you want to delete: ")
+            os.system("dnf remove {}".format(var))
+        elif int(ch2)==3 :
+            var=input("Enter the programme you want to search: ")
+            os.system("rpm -qa | grep {}".format(var))
+        elif int(ch2)==4 :
+            print("""PRESS 1 FOR ADDING REPOSITORIES
+                     PRESS 2 FOR LISTING REPOSITORIES""")
+            ch2_4=input("Enter your choice: " )
+            if int(ch2_4)==1:
+                print("""PRESS 1 FOR ADDING REPOS DRECTLY THROUGH DNF
+                         PRESS 2 FOR ADDING REPOS TROUGH CONFIG FILE""")
+                ch2_4_1=input("Enter your choice: ")
+                if int(ch2_4_1)==1:
+                    var=input("Enter the URL: ")
+                    os.system("dnf install {}".format(var))
+                elif int(ch2_4_1)==2:
+                    os.chdir("/etc/yum.repos.d/")
+                    os.system("/bin/bash")
+                    os.system("gedit TUI_created.repo")
+            elif int(ch2_4)==2:
+                os.system("dnf repolist")
+
+
+
     elif int(ch)==3:
         #to check storage(lecture 28 & 29)
         print("Disk Maangement")
@@ -61,30 +96,17 @@ if location == "locally":
         print("networking")
     elif int(ch)==5:
         #to configure,to put files on webserver
-        
-        print("""1.CONGFIGURE WEBSERVER                                     2.CREATE AND SAVE WEBPAGES""")
-
-        WSCH = int(input("enter your choice: "))  
-        
-        if WSCH==1:
-            os.system("dnf install httpd")                             os.system("systemctl enable httpd")                        os.system("systemctl disable firewalld")               
-        elif WSCH==2:                                                  os.system("cd DIRECTORY_ROOT") #JUST ADD DIRECTORY ROOT BY CHECKING  FROM httpd.conf file IN DIRECTORY/etc/httpd/conf 
-            file_name = input("enter file name: ")
-            os.system("vim file_name")
-        
-        else :
-            print("invalid choice")
-             
+        print("Webserver")
     elif int(ch)==6:
         #to trsnsfer files through scp
         print("Files Transfer")
     else :
         print("INPUT NOT SUPPORTED")
 
-elif location == "remotely":                                                #if location remotely
+elif location == "remotely":                      #if location remotely
     print("Enter the IP of remote host")
     remoteIp = input()
-    auth = input("""Do You want to do Key authentication YES/NO:""")         #if key authenticaton is required
+    auth = input("""Do You want to do Key authentication YES/NO""")  #if key authenticaton is required
     if auth == "YES":
         #genertate and send key to remoteIp
         print("Key Transfer")
@@ -125,7 +147,29 @@ elif location == "remotely":                                                #if 
 
     elif int(ch)==2:
         #to install,delete,add repos programmes
-        print("PAckage Management")
+        print("PAckage Management\n")
+        print("""\t\t\tPRESS 1 FOR INSTALLING A PROGRAMME
+                 PRESS 2 FOR DELETING A PROGRAMME
+                 PRESS 3 FOR SEARCHING A PROGRAMME
+                 PRESS 4 FOR REPOSITORY MANAGEMENT""")
+        ch2=input("Enter your choice: ")
+        if int(ch2)==1 :
+            var=input("Enter the programme you want to install: ")
+            os.system("dnf install {}".format(var))
+        elif int(ch2)==2 :
+            var=input("Enter the name of programme you want to delete: ")
+            os.system("dnf remove {}".format(var))
+        elif int(ch2)==3 :
+            var=input("Enter the programme you want to search: ")
+            os.system("rpm -ia | grep {}".format())
+        elif int(ch2)==4 :
+            print("""PRESS 1 """)
+
+
+
+
+
+
     elif int(ch)==3:
         #to check storage(lecture 28 & 29)
         print("Disk Maangement")
@@ -134,25 +178,7 @@ elif location == "remotely":                                                #if 
         print("networking")
     elif int(ch)==5:
         #to configure,to put files on webserver
-
-        print("""1.CONGFIGURE WEBSERVER
-        2.CREATE AND SAVE WEBPAGES""")
-
-        WSCH = int(input("enter your choice: "))
-
-        if WSCH==1:
-            os.system("dnf install httpd")
-            os.system("systemctl enable httpd")
-            os.system("systemctl disable firewalld")
-
-        elif WSCH==2:
-            os.system("cd DIRECTORY_ROOT") #JUST ADD DIRECTORY ROOT BY CHECKING  FROM httpd.conf file IN DIRECTORY/etc/httpd/conf
-            file_name = input("enter file name: ")
-            os.system("vim file_name")
-
-        else:
-            print("invalid option")
-            
+        print("Webserver")
     elif int(ch)==6:
         #to trsnsfer files through scp
         print("Files Transfer")
